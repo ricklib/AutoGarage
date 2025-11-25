@@ -1,0 +1,15 @@
+CREATE TABLE Owners (
+    OID INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Vehicles (
+    VID INT IDENTITY(1,1) PRIMARY KEY,
+    Description NVARCHAR(500) NULL,
+    LicensePlate CHAR(8) NOT NULL,
+    TowingWeight INT NULL,
+    Commercial BIT NOT NULL DEFAULT 0,
+    OID INT NOT NULL,
+    CONSTRAINT FK_Vehicles_Owners FOREIGN KEY (OID)
+        REFERENCES Owners(OID)
+);
