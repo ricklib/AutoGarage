@@ -16,7 +16,8 @@ internal class Program
         while (keepUsing)
         {
             Console.WriteLine("\n" + """
-                Choose an action. 
+                Choose an option.
+                --------------------------------
                 [1] List all owners and vehicles
                 [2] Add car owner
                 [3] Add vehicle
@@ -25,6 +26,7 @@ internal class Program
                 [6] Exit program
                 """);
             char input = Console.ReadKey().KeyChar;
+            Console.Clear();
 
             switch (input)
             {
@@ -57,6 +59,12 @@ internal class Program
     {
         Console.WriteLine("\n");
         List<CarOwner> owners = ownerRepo.GetAllCarOwners();
+
+        if (owners.Count == 0)
+        {
+            Console.WriteLine("No owners found.");
+            return;
+        }
 
         foreach (var owner in owners)
         {
