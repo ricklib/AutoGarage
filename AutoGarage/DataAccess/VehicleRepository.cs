@@ -26,8 +26,6 @@ public class VehicleRepository
         try
         {
             connection.Open();
-            Console.WriteLine(
-                "VehicleRepository - Successfully connected to database.");
         }
         catch (SqlException ex)
         {

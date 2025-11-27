@@ -28,11 +28,11 @@ public class CarOwnerRepository
         try
         {
             connection.Open();
-            Console.WriteLine("CarOwnerRepository - Successfully connected to database.");
         }
         catch (DbException ex)
         {
-            Console.WriteLine("CarOwnerRepository - Failed to connect to database: " + ex.Message);
+            Console.WriteLine(
+                "CarOwnerRepository - Failed to connect to database: " + ex.Message);
         }
     }
 

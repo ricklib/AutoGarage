@@ -304,7 +304,7 @@ internal class Program
     private static String GetNonNullInput()
     {
         string? input = Console.ReadLine();
-        while (input == null)
+        while (input == null || input.Trim() == "")
         {
             Console.WriteLine("Please enter a value.");
             input = Console.ReadLine();
