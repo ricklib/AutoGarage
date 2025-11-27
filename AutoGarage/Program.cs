@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Transactions;
-using AutoGarage.DataAccess;
+using AutoGarage.DAL;
 using AutoGarage.Domain;
 
 internal class Program

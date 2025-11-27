@@ -8,7 +8,7 @@ using AutoGarage.DTO;
 using AutoGarage.Mappers;
 using Microsoft.Data.SqlClient;
 
-namespace AutoGarage.DataAccess;
+namespace AutoGarage.DAL;
 
 public class VehicleRepository
 {
