@@ -19,10 +19,9 @@ public class CarOwnerRepository
 
     public CarOwnerRepository()
     {
-        InitializeDatabase();
     }
 
-    private void InitializeDatabase()
+    public void InitializeDatabase()
     {
         using var connection = new SqlConnection(_connectionString);
         try

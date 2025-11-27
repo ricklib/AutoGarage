@@ -10,6 +10,9 @@ internal class Program
 
     private static void Main(string[] args)
     {
+        vehicleRepo.InitializeDatabase();
+        ownerRepo.InitializeDatabase();
+
         Console.WriteLine("GARAGE MANAGEMENT SYSTEM");
 
         bool keepUsing = true;

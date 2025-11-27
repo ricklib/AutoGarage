@@ -17,10 +17,9 @@ public class VehicleRepository
 
     public VehicleRepository()
     {
-        InitializeDatabase();
     }
 
-    private void InitializeDatabase()
+    public void InitializeDatabase()
     {
         using var connection = new SqlConnection(_connectionString);
         try
