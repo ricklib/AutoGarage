@@ -24,7 +24,7 @@ public class Vehicle
         }
     }
 
-    private string _licensePlate;
+    private string _licensePlate = string.Empty;
     public virtual string LicensePlate
     {
         get { return _licensePlate; }
@@ -56,10 +56,16 @@ public class Vehicle
 
     public virtual bool IsValidLicensePlate(string licensePlate)
     {
+        if (string.IsNullOrEmpty(licensePlate))
+        {
+            return false;
+        }
+
         if (licensePlate.Length != 8)
         {
             return false;
         }
+
         int hyphenCount = 0;
         for (int i = 0; i < licensePlate.Length; i++)
         {

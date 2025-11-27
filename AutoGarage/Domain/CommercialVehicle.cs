@@ -17,7 +17,7 @@ public class CommercialVehicle : Vehicle
             if (!IsValidLicensePlate(value))
             {
                 throw new ArgumentException(
-                    "License plate for commercial vehicles must be 8 characters long, contain 2 hyphens, and not start with 'V'.");
+                    "License plate for commercial vehicles must be 8 characters long, contain 2 hyphens, and start with 'V'.");
             }
             base.LicensePlate = value;
         }
@@ -31,19 +31,16 @@ public class CommercialVehicle : Vehicle
 
     public override bool IsValidLicensePlate(string licensePlate)
     {
-        if (licensePlate.Length != 8)
+        if (!base.IsValidLicensePlate(licensePlate))
         {
             return false;
         }
-        if (licensePlate[0] == 'V') return false;
-        int hyphenCount = 0;
-        for (int i = 0; i < licensePlate.Length; i++)
+
+        if (char.ToUpperInvariant(licensePlate[0]) != 'V')
         {
-            if (licensePlate[i] == '-')
-            {
-                hyphenCount++;
-            }
+            return false;
         }
-        return hyphenCount == 2;
+
+        return true;
     }
 }

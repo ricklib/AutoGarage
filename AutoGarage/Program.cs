@@ -133,24 +133,6 @@ internal class Program
         }
         if (description.Trim() == "x" || description.Trim() == "X") return;
 
-        string license;
-        Console.WriteLine("Enter license plate. (example: a1-2b-c3) (or enter X to cancel)");
-        while (true)
-        {
-            license = GetNonNullInput();
-            if (license.Trim() == "x" || license.Trim() == "X") return;
-
-            try
-            {
-                var v = new Vehicle(0, ownerId, description, license);
-                break;
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"Invalid license plate: {ex.Message} Try again or enter X to cancel.");
-            }
-        }
-
         Console.WriteLine("Is the vehicle commercial? (y/n) (or enter X to cancel)");
         bool commercial;
         while (true)
@@ -175,6 +157,24 @@ internal class Program
             
         if (commercial)
         {
+            string license;
+            Console.WriteLine("Enter license plate. (example: v1-2b-c3) (commercial license plate must start with 'v') (or enter X to cancel)");
+            while (true)
+            {
+                license = GetNonNullInput();
+                if (license.Trim() == "x" || license.Trim() == "X") return;
+
+                try
+                {
+                    var v = new CommercialVehicle(0, ownerId, description, license, 0); // To test validity
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine($"Invalid license plate: {ex.Message} Try again or enter X to cancel.");
+                }
+            }
+
             Console.WriteLine("Enter towing weight in kg. (or enter X to cancel)");
             int towingWeight;
             while (true)
@@ -194,6 +194,24 @@ internal class Program
         }
         else
         {
+            string license;
+            Console.WriteLine("Enter license plate. (example: a1-2b-c3) (or enter X to cancel)");
+            while (true)
+            {
+                license = GetNonNullInput();
+                if (license.Trim() == "x" || license.Trim() == "X") return;
+
+                try
+                {
+                    var v = new Vehicle(0, ownerId, description, license); // To test validity
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine($"Invalid license plate: {ex.Message} Try again or enter X to cancel.");
+                }
+            }
+
             var vehicle = new Vehicle(0, ownerId, description, license);
             vehicleRepo.AddVehicle(vehicle);
         }
@@ -278,15 +296,14 @@ internal class Program
         Console.WriteLine(
             $"Description: {vehicleToDelete.Description}, License Plate: {vehicleToDelete.LicensePlate} (ID: {vehicleToDelete.Id})");
         Console.WriteLine("Are you sure you want to delete this vehicle? (y/n)");
-        bool commercial;
         while (true)
         {
-            string commInput = GetNonNullInput().Trim().ToLower();
-            if (commInput == "y")
+            string confInput = GetNonNullInput().Trim().ToLower();
+            if (confInput == "y")
             {
                 break;
             }
-            else if (commInput == "n")
+            else if (confInput == "n")
             {
                 return;
             }
