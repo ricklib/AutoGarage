@@ -19,6 +19,7 @@ public class CarOwnerRepository
 
     public CarOwnerRepository()
     {
+        _vehicleRepo.InitializeDatabase();
     }
 
     public void InitializeDatabase()
